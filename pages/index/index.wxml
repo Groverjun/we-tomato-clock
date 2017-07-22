@@ -1,0 +1,44 @@
+<view class="container timer {{isRuning ? 'timer--runing': ''}}">
+	<view class="timer_main">
+		<view class="timer_time-wrap">
+			<view class="timer_progress_mask"></view>
+			<view class="timer_progress timer_left">
+				<view class="timer_circle timer_circle--left" style="transform: rotate({{leftDeg}}deg);"></view>
+			</view>
+			<view class="timer_progress timer_right">
+				<view class="timer_circle timer_circle--right" style="transform: rotate({{rightDeg}}deg);"></view>
+			</view>
+			<text wx:if="{{!completed}}" class="timer_time">{{remainTimeText}}</text>
+			<text wx:if="{{isRuning}}" animation="{{nameAnimation}}" class="timer_taskName">{{taskName}}{{completed ? '已完成！' : '中'}}</text>
+			<image wx:if="{{completed}}" class="timer_done" src="../../image/complete.png"></image>
+		</view>
+		<!--<input 
+		 	type="text" 
+		 	placeholder-style="text-align:center" 
+		 	class="timer_inputname" 
+		 	bindinput="changeLogName"
+		 	placeholder="给您的任务取个名字吧"/>-->
+
+	</view>
+	<view class="text-center {{isRuning? 'hide' : ''}}">
+		<text class="task-tip select-title">选择一个任务</text>
+	</view>
+	<view class="text-center {{isRuning? 'hide' : ''}}">
+		<text class="task-tip">在接下来{{workTime}}分钟内，专注完成它。</text>
+	</view>
+	<view class="timer_footer">
+		<view bindtap="startTimer" data-type="work" id="btn-work" class="timer_ctrl {{isRuning ? 'hide' : ''}}">工作</view>
+
+		<view bindtap="startTimer" data-type="study" id="btn-study" class="timer_ctrl {{isRuning ? 'hide' : ''}}">学习</view>
+
+	</view>
+	<view class="timer_footer">
+		<view bindtap="startTimer" data-type="sport" id="btn-sport" class="timer_ctrl {{isRuning ? 'hide' : ''}}">运动</view>
+
+		<view bindtap="startTimer" data-type="summary" id="btn-summary" class="timer_ctrl {{isRuning? 'hide' : ''}}">总结</view>
+	</view>
+	<view class="btn-action {{isRuning? 'btn-show' : ''}}">
+		<!--<button bindtap="pauseTimer" class="btn-pause" type="default">暂停计时</button>-->
+		<button bindtap="cancelTimer" class="btn-cancel" type="warn">放弃</button>
+	</view>
+</view>
